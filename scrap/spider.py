@@ -20,8 +20,8 @@ class JupiterSpider(scrapy.Spider):
     name="jupiter-spider"
     base_url = "https://uspdigital.usp.br/jupiterweb/"
 
-    start_urls = [cursos['bcc']['url']]
-    codigo_curso = cursos['bcc']['codigo']
+    start_urls = [cursos['fiscomp']['url']]
+    codigo_curso = cursos['fiscomp']['codigo']
     courses = {}
 
     # Parse dos campos de cada disciplina na página da grade curricular
@@ -50,6 +50,7 @@ class JupiterSpider(scrapy.Spider):
         [course_id, course_name] = header.split(' - ')
 
         self.courses[course_id].update({'nome': course_name})
+        self.courses[course_id].update({'id': course_id})
         self.courses[course_id].update({'requisitos': []})
 
         url_requisites = "{}{}".format(self.base_url, response.xpath("//tr//td//a[@class='link_gray']/@href").extract()[0])

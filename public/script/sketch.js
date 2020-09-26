@@ -1,5 +1,8 @@
 var socket;
 var data;
+var G;
+var width;
+var height;
 
 function preload() {
   socket = io.connect('http://localhost:8000'); 
@@ -7,11 +10,21 @@ function preload() {
 }
 
 function setup() {
-  console.log(data);
-  createCanvas(850, 600);
+  width = windowWidth;
+  height = windowHeight;
+
+  let initial_nodes = [];
+  for (entry in data) {
+    if(data[entry]['requisitos'].length == 0) {
+      initial_nodes.push(data[entry])
+    }
+  }
+  G = new Graph(initial_nodes, width, height);
+
+  createCanvas(width, height);
 }
   
 function draw() {
-    background(51)
-    ellipse(mouseX, mouseY, 80, 80);
+    background(0);
+    G.draw();
 }
