@@ -7,7 +7,9 @@ let data = JSON.parse(rawdata);
 
 const app = express();
 app.use(express.static(__dirname + '/public'));
-var server = app.listen(8000);
+
+const port = process.env.PORT || 8000;
+var server = app.listen(port);
 var io = socket(server);
 
 io.on('connection', (socket)=>{
