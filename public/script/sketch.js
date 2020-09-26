@@ -10,8 +10,8 @@ function preload() {
 }
 
 function setup() {
-  width = 800;
-  height = 600;
+  width = windowWidth;
+  height = windowHeight;
 
   let initial_nodes = [];
   for (entry in data) {
@@ -48,7 +48,7 @@ function draw() {
     if(dist(mouseX, mouseY, G.nodes[i].x, G.nodes[i].y) < 5) {
       fill(125, 10, 125, 255);
       circle(G.nodes[i].x , G.nodes[i].y, 20);
-
+      
       textSize(30);
       fill(255, 255, 255, 255);
       text(G.nodes[i].nome, G.width/2 - G.r/2, G.height/2);

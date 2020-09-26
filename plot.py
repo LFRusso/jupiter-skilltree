@@ -28,7 +28,10 @@ for key in list(disciplinas.keys()):
 
 for key in list(disciplinas.keys()):
     max_path = [len(p) for p in all_simple_paths(G, 'START', key)]
-    disciplinas[key]['maxpath'] = max(max_path)-2
+    if (max_path):
+        disciplinas[key]['maxpath'] = max(max_path)-2
+    else:
+        disciplinas[key]['maxpath'] = 0
 
 with open("./public/assets/data/disciplinas.json", 'w+') as f:
     json.dump(disciplinas, f)
