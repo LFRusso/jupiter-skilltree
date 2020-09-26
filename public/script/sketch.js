@@ -10,8 +10,8 @@ function preload() {
 }
 
 function setup() {
-  width = windowWidth;
-  height = windowHeight;
+  width = 800;
+  height = 600;
 
   let initial_nodes = [];
   for (entry in data) {

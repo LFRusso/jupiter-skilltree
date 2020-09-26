@@ -14,5 +14,4 @@ var io = socket(server);
 
 io.on('connection', (socket)=>{
     socket.emit('sendData', data);
-    console.log(socket.id);
 });

@@ -1,10 +1,10 @@
 class Graph {
     constructor(nodes, width, height) {   
-        let r = (1/5)*(width+height)/2      
+        let r = (1/5)*(width+height)/2
         for (let i=0; i<nodes.length; i++) {
             let ang = i*2*Math.PI/nodes.length;
-            nodes[i].x = width/2 + r*Math.cos(ang);
-            nodes[i].y = height/2 + r*Math.sin(ang);
+            nodes[i].x = width/2 + (r + Math.random() * (10 + 20) - 20)*Math.cos(ang);
+            nodes[i].y = height/2 + (r + Math.random() * (10 + 20) - 20)*Math.sin(ang);
             nodes[i].ang = ang;
 
             nodes[i].clicked = false;
@@ -37,8 +37,8 @@ class Graph {
         }
         ang = ang/node.requisitos.length + Math.random() * (0.4 + 0.4) - 0.4;
 
-        node.x = this.width/2 + (50*node.requisitos.length + this.r)*Math.cos(ang);
-        node.y = this.height/2 + (50*node.requisitos.length + this.r)*Math.sin(ang);
+        node.x = this.width/2 + (50*node.maxpath + this.r)*Math.cos(ang);
+        node.y = this.height/2 + (50*node.maxpath + this.r)*Math.sin(ang);
         node.ang = ang;
         node.clicked = false;
         console.log(node);

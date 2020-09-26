@@ -13,7 +13,7 @@ def get_prereqs(G, disc):
     prereqs = prereqs[prereqs != disc]
     return prereqs
 
-with open("data/disciplinas.json", 'r') as f:
+with open("./data/disciplinas.json", 'r') as f:
     line = f.readline()
 disciplinas = json.loads(line)
 
@@ -25,6 +25,13 @@ for key in list(disciplinas.keys()):
         G.add_edge(req, key)
     if(len(disciplinas[key]['requisitos']) == 0):
         G.add_edge('START', key)
+
+for key in list(disciplinas.keys()):
+    max_path = [len(p) for p in all_simple_paths(G, 'START', key)]
+    disciplinas[key]['maxpath'] = max(max_path)-2
+
+with open("./public/assets/data/disciplinas.json", 'w+') as f:
+    json.dump(disciplinas, f)
 
 options = {
     'node_color': 'green',
