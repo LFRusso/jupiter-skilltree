@@ -1,11 +1,11 @@
-var socket;
+var socket = io();
 var data;
+
 var G;
 var width;
 var height;
 
 function preload() {
-  socket = io.connect('http://localhost:8000'); 
   data = loadJSON('assets/data/disciplinas.json');
 }
 
