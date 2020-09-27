@@ -1,16 +1,13 @@
 class Graph {
     constructor(nodes, width, height) {   
-        let r = (1/8)*(width+height)/2
+        
         for (let i=0; i<nodes.length; i++) {
-            let ang = i*2*Math.PI/nodes.length;
-            nodes[i].x = width/2 + (r + Math.random() * (10 + 30) - 30)*Math.cos(ang);
-            nodes[i].y = height/2 + (r + Math.random() * (10 + 30) - 30)*Math.sin(ang);
-            nodes[i].ang = ang;
+            nodes[i].x = width/10 + i*(8*width/10)/nodes.length;
+            nodes[i].y = 50;
 
             nodes[i].clicked = false;
         }
         
-        this.r = r
         this.nodes = nodes;
         this.width = width;
         this.height = height;
@@ -29,30 +26,30 @@ class Graph {
         if (G.nodes.includes(node)) {
             return;
         }
-        
-        let ang = 0;
-        for (let i=0; i<node.requisitos.length; i++) {
-            let index = this.index_by_id(node.requisitos[i]);
-            ang += this.nodes[index].ang;
-        }
-        ang = ang/node.requisitos.length + Math.random() * (0.4 + 0.4) - 0.4;
-
-        let node_r = (50*node.maxpath + this.r + Math.random() * (10 + 10) - 10);
-        node.x = this.width/2 + node_r*Math.cos(ang);
-        node.y = this.height/2 + node_r*Math.sin(ang);
-        node.ang = ang;
+        node.y = 50*(node.maxpath + 1);
         node.clicked = false;
-        console.log(node);
-
         this.nodes.push(node);
+
+        this.organize_nodes();
     }
 
-    add_nodes_from(nodes) {
+    organize_nodes() {
+        let node_ranks = new Object();
+        for (let i=0; i<this.nodes.length; i++) {
+            let rank = this.nodes[i].maxpath;
+            
+            if (!Array.isArray(node_ranks[rank])) {
+                node_ranks[rank] = [];
+            } 
+            node_ranks[rank].push(this.nodes[i]);
+        }
 
-    }
-
-    add_edge(vertex) {
-
+        for (key in node_ranks) {
+            let len = node_ranks[key].length;
+            for (let i=0; i<len; i++) {
+                node_ranks[key][i].x = this.width/10 + i*(8*this.width/10)/len;
+            }
+        }
     }
 
     draw() {
@@ -63,19 +60,9 @@ class Graph {
             if (this.nodes[i].clicked) {
                 fill(255, 255, 255, 255);
                 circle(this.nodes[i].x , this.nodes[i].y, 10);
-
-                /*
-                textSize(12);
-                fill(255, 0, 0, 255);
-                text(this.nodes[i].id, this.nodes[i].x, this.nodes[i].y);*/
             } else {
                 fill(200, 200, 200, 200);
                 circle(this.nodes[i].x , this.nodes[i].y, 10);
-
-
-                /*textSize(12);
-                fill(125, 125, 125, 255);
-                text(this.nodes[i].id, this.nodes[i].x, this.nodes[i].y);*/
             }
           }
 

@@ -10,8 +10,8 @@ function preload() {
 }
 
 function setup() {
-  width = windowWidth;
-  height = windowHeight;
+  width = 2*windowWidth/3;
+  height = 3*windowHeight/4;
 
   let initial_nodes = [];
   for (entry in data) {
@@ -41,18 +41,18 @@ function update_graph() {
 }
   
 function draw() {
-  background(51);
+  background(100);
   G.draw();
 
   for(let i=0; i<G.nodes.length; i++) {
     if(dist(mouseX, mouseY, G.nodes[i].x, G.nodes[i].y) < 5) {
-      noStroke();
+      stroke(0);
       fill(125, 10, 125, 255);
       circle(G.nodes[i].x , G.nodes[i].y, 20);
       
-      textSize(30);
+      textSize(20);
       fill(255, 255, 255, 255);
-      text(G.nodes[i].nome, G.width/2 - G.r/2, G.height/2);
+      text(G.nodes[i].id + ' - ' + G.nodes[i].nome, 0, G.height - 10);
     }
   }
 

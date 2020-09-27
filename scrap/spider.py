@@ -16,12 +16,12 @@ class JupiterSpider(scrapy.Spider):
                     'codigo': 55071
         },
     }
+    start_urls = [cursos['bcc']['url']]
+    codigo_curso = cursos['bcc']['codigo']
 
     name="jupiter-spider"
     base_url = "https://uspdigital.usp.br/jupiterweb/"
 
-    start_urls = [cursos['bcc']['url']]
-    codigo_curso = cursos['bcc']['codigo']
     courses = {}
 
     # Parse dos campos de cada disciplina na página da grade curricular
