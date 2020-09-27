@@ -41,11 +41,12 @@ function update_graph() {
 }
   
 function draw() {
-  background(0);
+  background(51);
   G.draw();
 
   for(let i=0; i<G.nodes.length; i++) {
     if(dist(mouseX, mouseY, G.nodes[i].x, G.nodes[i].y) < 5) {
+      noStroke();
       fill(125, 10, 125, 255);
       circle(G.nodes[i].x , G.nodes[i].y, 20);
       
