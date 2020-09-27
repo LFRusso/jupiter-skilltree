@@ -7,11 +7,11 @@ Disponível em https://jupiter-skilltree.herokuapp.com/
 ## 1.1 Raspagem dos dados
 No diretório `scrap`  digite:
 ```shell
-$ scrapy runspider spider
+$ scrapy runspider spider.py
 ```
 o arquivo `data/disciplinas.json` será gerado.
 
-Para obter a grade de outro curso adicione as informações dele seguindo os exemplos
+Para obter a grade de outro curso adicione as informações dele seguindo os exemplos em `scrap/spider.py`:
 
 ```python
 cursos = {
